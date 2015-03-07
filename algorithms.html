@@ -1,0 +1,80 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+
+// =========
+// Array Max
+// =========
+
+// Given an array of negative/positive integers, find the largest element. 
+// DO NOT use Math.max.
+
+var array = [34 , 16, 1, 66, 50, 42, -91, -145];
+var array2 = [9, 18, -13, 612, 45, 23, -121, 8];
+
+function max(array) {
+  if (array.length === 0) {
+    return
+  }
+  var largest = array[0];
+  for(var i = 0; i <= array.length; i += 1) {
+    if (largest < array[i]) {
+      largest = array[i];
+    }
+  }
+  return largest;
+}
+console.log("The largest number is " + max(array));
+// -> The largest number is 66
+
+
+// ============
+// Array Middle
+// ============
+
+// Given an array of negative/positive integers, return the element in the 
+// center position of the array. If the array has an even number of elements, 
+// return the average of the two middle elements instead.
+
+function middle_number(array) {
+  if (array.length === 0) {
+    return
+  }
+  else if (array.length % 2 === 0) {
+    return (array[array.length / 2] + array[array.length / 2] - 1) / 2.0
+  }
+  else {
+    return array[array.length / 2];
+  }
+}
+console.log("The number in the middle is " + middle_number(array));
+// -> The number in the middle is 49.5
+
+
+// =============
+// Array Zip Sum
+// =============
+
+// Given two arrays of negative/positive integers, return a new array such that 
+// each element at index n is the sum of the two elements from the other arrays 
+// at their index n's.
+
+function zip_sum(array, array2) {
+  var new_arr = [];
+  for(var i = 0; i < array.length; i += 1) {
+    new_arr.push(array[i] + array2[i]);
+  }
+  return new_arr;
+}
+console.log("The new array is " + zip_sum(array, array2));
+// -> The new array is 43, 34, -12, 678, 95, 65, -212, -137
+
+
+</script>
+</body>
+</html>
