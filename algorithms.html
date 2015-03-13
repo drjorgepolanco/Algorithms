@@ -75,6 +75,34 @@ console.log("The new array is " + zip_sum(array, array2));
 // -> The new array is 43, 34, -12, 678, 95, 65, -212, -137
 
 
+// ==========
+// Small Swap
+// ==========
+
+// Given an array of negative/positive integers, swap the smallest element of 
+// the array with the first element of the array.
+
+var array = [ 18, 4, 3, 5, 22, 12 ];
+
+function swap(array) {
+  var smallest = array[0];
+  var index = 0;
+  for (var i = 0, x = array.length; i < x; i += 1) {
+    var current = array[i];
+    if (smallest > current) {
+      smallest = current;
+      index = i;
+    } 
+  }
+  console.log(smallest + " " + index);
+  array.splice(index, 1, array[0]);
+  array.splice(0, 1, smallest);
+  return array;
+}
+
+console.log("The swapped array is " + swap(array));
+
+
 </script>
 </body>
 </html>
