@@ -101,7 +101,32 @@ function swap(array) {
 }
 
 console.log("The swapped array is " + swap(array));
+// The swapped array is 3,4,18,5,22,12
 
+// ------------
+// Another way:
+// ------------
+
+var array = [ 43, 34, -12, 678, 95, 65, -212, -137 ];
+
+function small_swap(array) {
+  var smallest = array[0];
+  var index = 0;
+  var i = 0;
+  while (i < array.length) {
+    if (array[i] < smallest) {
+      smallest = array[i];
+      index = i;
+    }
+    i += 1;
+  }
+  array[index] = array[0];
+  array[0] = smallest;
+  return array;
+}
+
+console.log("The swapped array is " + small_swap(array));
+// The swapped array is -212,34,-12,678,95,65,43,-137
 
 </script>
 </body>
