@@ -130,7 +130,27 @@ array.insert(index - 1, first)
 array.unshift(smallest)
 
 puts "The swapped array is #{array}"
+# The swapped array is [0, 3, 2, 4, 2]
 
+# ---------------------
+# Cleaner way would be:
+# ---------------------
+
+array = [ 9, 4, 1, 3, 12, 5, 21 ]
+
+def swap(array)
+  smallest = array.min
+  first = array.shift
+  hash = Hash[array.map.with_index.to_a]
+  index = hash[smallest]
+  array.slice!(index, 1)
+  array.insert(index, first)
+  array.unshift(smallest)
+  return array
+end
+
+puts "The swapped array is #{swap(array)}"
+# The swapped array is [1, 4, 9, 3, 12, 5, 21]
 
 
 
