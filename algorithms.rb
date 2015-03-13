@@ -1,33 +1,31 @@
-# # ======
-# # Arrays
-# # ======
+# ======
+# Arrays
+# ======
 
-# # - Push:    0(1) stable
-# # - Insert:  0(n) slow linear (As the size increases)
-# # - Include: 0(n) super slow, linear
+# - Push:    0(1) stable
+# - Insert:  0(n) slow linear (As the size increases)
+# - Include: 0(n) super slow, linear
 
-# def time(count = 1000, &block)
-#   start = Time.now
-#   1000.times { yield }
-#   end_time = Time.now
-#   puts (end_time - start) * 1000
-# end
+def time(count = 1000, &block)
+  start = Time.now
+  1000.times { yield }
+  end_time = Time.now
+  puts (end_time - start) * 1000
+end
 
-# def create_array(size)
-#   Array.new(size) { |x| x }
-# end
+def create_array(size)
+  Array.new(size) { |x| x }
+end
 
-# 10.times do |n|
-#   size = 10000 * (n + 1)
-#   arr = create_array(size)
-#   time do
-#     arr.include?(size + 1)
-#     arr.insert(2, size / 2)
-#     arr.push(2)
-#   end
-# end
-
-# puts [34 , 16, 1, 66, 50, 42, -91, -145].max
+10.times do |n|
+  size = 10000 * (n + 1)
+  arr = create_array(size)
+  time do
+    arr.include?(size + 1)
+    arr.insert(2, size / 2)
+    arr.push(2)
+  end
+end
 
 
 # =========
