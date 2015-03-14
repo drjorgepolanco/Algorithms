@@ -143,16 +143,41 @@ puts "The swapped array is #{array}"
 array = [ 9, 4, 3, 1, 12, 5, 21 ]
 
 def swap(array)
+  # 1. We get the smallest element with this hacky method.
   smallest = array.min
+  # 2. Then, if the smallest is already the first element,
+  #    just return the array as is. Not modified.
   if smallest == array.first
     array
   else
+    # 3. If not, 'first' will be the first element in the array.
+    #    The method shift(), takes the first element in an array
+    #    returns it.
     first = array.shift
+    # 4. We convert the array into a hash to find the index faster.
+    #    We could use the method 'include()', but it is really inefficient
+    #    because it has to iterate through the whole array and compare
+    #    each element with the given one to see if it matches.
     hash = Hash[array.map.with_index.to_a]
+    # 5. Then we get the index using hash[smallest].
     index = hash[smallest]
+    # 6. We destructively remove the first element in the array.
+    #    The method slice has two parameters, the first one is the
+    #    starting position where it will start to be applied, and
+    #    the second parameter is the amount of elements we plan to
+    #    remove starting from the position in the first parameter.
+    #    In other words, cut one position in the array starting from
+    #    position 3.
     array.slice!(index, 1)
+    # 7. Then insert the first element of the array in that position.
     array.insert(index, first)
+    # 8. Then put the smallest element in the first position.
+    #    Note that 'shift()' cuts the first element, I bet is easy to 
+    #    guess what 'unshift()' does.
+    #    If you guessed it adds an element to the first position, you
+    #    are right.
     array.unshift(smallest)
+    # 9. Finally, we return the modified array.
     array
   end
 end
@@ -167,20 +192,81 @@ puts "The swapped array is #{swap(array)}"
 array = [ 9, 4, 1, 3, 12, 5, 0 ]
 
 def small_swap(array)
+  # 1. We declare the variables
   small_index = 0
   small_element = array.first
 
+  # 2. Using a for loop we iterate from 0 to the length of 
+  #    the array, being 'i' the current index
   for i in 0...array.length
+    # 3. If 'small_element' is greater than the current element
     if small_element > array[i]
+      # 4. then, the value of 'small_element' will become the 
+      #    value of the current element
       small_element = array[i]
+      # 5. We set the value of 'small_index' to i
       small_index = i
     end
   end
-
+  # 6. Now, the value of the element positioned in the 
+  #    index of the smallest one will become the first element,
+  #    in this case, array[6] (the seventh position) will become 9
   array[small_index] = array[0]
+  # 7. And the first element will become the smallest,
+  #    in this case, array[0] will be 0
   array[0] = small_element
+  # 8. Lastly, we return the modified array.
   array
 end
 
 puts "The swapped array is #{small_swap(array)}"
 # The swapped array is [0, 4, 1, 3, 12, 5, 9]
+
+
+# ========
+# Zero Sum
+# ========
+
+# Given an array of negative/positive integers, return true if there exists two 
+# numbers whose sum is zero.
+array = [ 5, -9, 2, 9 ]
+
+def zero_sum(array, sum = 0)
+  for x in 0...array.length
+    for y in x...array.length
+      if array[x] + array[y] == sum
+        return true
+      end
+    end
+  end
+  false
+end
+
+puts zero_sum(array)
+
+
+# ==========
+# Zero Sum 3
+# ==========
+
+# Given an array of negative/positive integers, return true if there exists 
+# three numbers whose sum is zero.
+
+array_true_1 = [ 1, 3, 2, -3 ]
+array_true_2 = [ 0, 2, -2 ]
+array_false_1 = [ 5, 7, 2, 9 ]
+array_false_2 = [ 1, 1 ]
+
+def zero_sum3(array)
+  array.each do |i|
+    if zero_sum(array, -1 * i)
+      return true
+    end
+  end
+  false
+end
+
+puts zero_sum3(array_true_1) # -> true
+puts zero_sum3(array_true_2) # -> true
+puts zero_sum3(array_false_1) # -> false
+puts zero_sum3(array_false_2) # -> false

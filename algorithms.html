@@ -85,18 +85,34 @@ console.log("The new array is " + zip_sum(array, array2));
 var array = [ 18, 4, 3, 5, 22, 12 ];
 
 function swap(array) {
+  // 1. We declare the variables
   var smallest = array[0];
   var index = 0;
+  // 2. Using a "For Loop", we iterate through the array
   for (var i = 0, x = array.length; i < x; i += 1) {
+    // 3. We define 'current' as current element in every iteration
     var current = array[i];
+    // 4. If 'smallest', which is the variable we defined before the loop is
+    //    bigger than the 'current' element, then the value of 'smallest' will 
+    //    become the value of current. When we finish the iteration, the smallest
+    //    element in the array will become the value of 'smallest'.
     if (smallest > current) {
       smallest = current;
+      // 5. We set the value of 'index' as 'i', this changes the value of the 
+      //    var index we defined before. That way we can get the value of 'i' 
+      //    from outside the loop.
       index = i;
     } 
   }
-  console.log(smallest + " " + index);
+  // 6. We log the values just to make sure we got the correct ones. In this case: |
+  console.log(smallest + " " + index); // <-- smallest is 3, and index is 2 <----- |
+  // 7. We remove from the array one element starting in index 2, that means we
+  //    remove the 3, which is 'smallest', and we add the first element of the array
+  //    in that position.
   array.splice(index, 1, array[0]);
+  // 8. Then, we remove the first element in the array and insert 3 in its position.
   array.splice(0, 1, smallest);
+  // 9. Finally we return the modified array.
   return array;
 }
 
@@ -110,23 +126,91 @@ console.log("The swapped array is " + swap(array));
 var array = [ 43, 34, -12, 678, 95, 65, -212, -137 ];
 
 function small_swap(array) {
+  // 1. We declare the variables
   var smallest = array[0];
   var index = 0;
   var i = 0;
+  // 2. Using a 'while loop' we iterate through the array
   while (i < array.length) {
+    // 3. If the current element is less than 'smallest'
     if (array[i] < smallest) {
+      // then 'smallest' will become the current element
       smallest = array[i];
+      // 4. We set the value of 'index' as 'i', this changes the value of the 
+      //    var index we defined before. That way we can get the value of 'i' 
+      //    from outside the loop.
       index = i;
     }
+    // 5. Now we update the value of i to avoid an infinite loop.
     i += 1;
   }
+  // 6. We log the values just to make sure we got the correct ones. In this case: |
+  console.log(smallest + " " + index); // <-- smallest is -212, and index is 6 <-- |
+  // 7. Now the value in the 7th position in the array, which is array[6] will become
+  //    the whatever value we had in the first position (array[0]). 
   array[index] = array[0];
+  // 8. And the value of the first position, will become the smallest element we
+  //    found in the array.
   array[0] = smallest;
+  // 9. Finally we return the modified array.
   return array;
 }
 
 console.log("The swapped array is " + small_swap(array));
 // The swapped array is -212,34,-12,678,95,65,43,-137
+
+
+// --------
+// Zero Sum
+// --------
+
+// Given an array of negative/positive integers, return true if there exists two 
+// numbers whose sum is zero.
+
+var arrayTrue =  [ 1, 3, 2, -3 ];
+var arrayFalse = [ 5, 7, 2, 9 ];
+
+function zeroSum(array, sum) {
+  sum = typeof sum !== 'undefined' ? sum : 0
+  for (var i = 0; i < array.length; i += 1) {
+    for (var j = i; j < array.length; j += 1) {
+      if (array[i] + array[j] === sum) {
+        return true;
+      } 
+    }
+  }
+  return false;
+}
+
+console.log(zeroSum(arrayTrue));  // -> True
+console.log(zeroSum(arrayFalse)); // -> False
+
+
+// ----------
+// Zero Sum 3
+// ----------
+
+// Given an array of negative/positive integers, return true if there exists 
+// three numbers whose sum is zero.
+
+var arrayTrue1 = [ 1, 3, 2, -3 ];
+var arrayTrue2 = [ 0, 2, -2 ];
+var arrayFalse1 = [ 5, 7, 2, 9 ];
+var arrayFalse2 = [ 1, 1 ];
+
+function zeroSum3(array) {
+  for (var i = 0; i < array.length; i += 1) {
+    if (zeroSum(array, (-1 * array[i]))) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(zeroSum3(arrayTrue1)); // -> true
+console.log(zeroSum3(arrayTrue2)); // -> true
+console.log(zeroSum3(arrayFalse1)); // -> false
+console.log(zeroSum3(arrayFalse2)); // -> false
 
 </script>
 </body>
