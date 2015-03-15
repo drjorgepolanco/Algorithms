@@ -48,6 +48,20 @@ function exp(a, b) {
 
 console.log(exp(2, 3));
 
+
+// Recursive countdown
+
+function countdown(n) {
+  if (n === 0) {
+    return false;
+  }
+  else {
+    console.log(n);
+    countdown(n - 1);
+  }
+}
+
+countdown(3);
 </script>
 </body>
 </html>

@@ -33,3 +33,17 @@ def exp(a, b)
 end
 
 puts exp(2, 3)
+
+
+# Recursive countdown
+
+def countdown(n)
+  if n == 0
+    return false
+  else
+    puts n
+    countdown(n - 1)
+  end
+end
+
+countdown(3)
