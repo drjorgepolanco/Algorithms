@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sorting</title>
+</head>
+<body>
+  
+<script>
+
+var array = [3, 1, 5, 2, 5, -2, 1, 5, -19, 30];
+
+function sortArray(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  for (var x = 0; x < array.length; x += 1) {
+    swap(array, x);
+  }
+  return array;
+}
+
+function swap(array, x) {
+  var smallest = array[x];
+  var smallest_index = x
+  for (var i = x; i < array.length; i += 1) {
+    if (smallest > array[i]) {
+      smallest = array[i];
+      smallest_index = i;
+    }
+  }
+  array[smallest_index] = array[x];
+  array[x] = smallest;
+}
+
+console.log(sortArray(array));
+
+
+
+</script>
+</body>
+</html>
