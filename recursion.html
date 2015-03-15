@@ -1,0 +1,39 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Recursion</title>
+</head>
+<body>
+  
+<script>
+
+// Create the fizzbuzz method that counts up to a certain number while replacing 
+// multiples of 3 with fizz and multiples of 5 with buzz.
+
+function fizzBuzz(n) {
+  if (n === 100) {
+    return false;
+  }
+  else {
+    if ((n % 3 === 0) && (n % 5 === 0)) {
+      console.log("FizzBuzz");
+    } 
+    else if (n % 3 === 0) {
+      console.log("Fizz");
+    }
+    else if (n % 5 === 0) {
+      console.log("Buzz");
+    }
+    else {
+      console.log(n)
+    }
+  }
+  fizzBuzz(n += 1);
+}
+
+fizzBuzz(1);
+
+
+</script>
+</body>
+</html>
